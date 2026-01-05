@@ -1,45 +1,42 @@
 public class Product {
-    private String name;
-    private double price;
-    private int stockQuantity;
-    private String category;
 
-    public Product(String name, double price, int stockQuantity, String category) {
+    protected int id;
+    protected String name;
+    protected double price;
+    protected int quantity;
+
+    public Product(int id, String name, double price, int quantity) {
+        this.id = id;
         this.name = name;
-        this.price = price;
-        this.stockQuantity = stockQuantity;
-        this.category = category;
+        setPrice(price);
+        setQuantity(quantity);
     }
 
-    public Product() {
-        this.name = "Unknown";
-        this.price = 0.0;
-        this.stockQuantity = 0;
-        this.category = "General";
+    public void setPrice(double price) {
+        if (price < 0) {
+            this.price = 0;
+        } else {
+            this.price = price;
+        }
     }
 
-    public String getName() { return name; }
-    public void setName(String name) { this.name = name; }
-
-    public double getPrice() { return price; }
-    public void setPrice(double price) { this.price = price; }
-
-    public int getStockQuantity() { return stockQuantity; }
-    public void setStockQuantity(int stockQuantity) { this.stockQuantity = stockQuantity; }
-
-    public String getCategory() { return category; }
-    public void setCategory(String category) { this.category = category; }
-
-    public void restock(int amount) {
-        this.stockQuantity += amount;
+    public void setQuantity(int quantity) {
+        if (quantity < 0) {
+            this.quantity = 0;
+        } else {
+            this.quantity = quantity;
+        }
     }
 
-    public boolean isInStock() {
-        return this.stockQuantity > 0;
+
+    public void showInfo() {
+        System.out.println("Product: " + name + ", price: " + price);
     }
 
     @Override
     public String toString() {
-        return "Product{name='" + name + "', price=" + price + ", stock=" + stockQuantity + ", category='" + category + "'}";
+        return "Product: " + name +
+                ", price=" + price +
+                ", quantity=" + quantity;
     }
 }

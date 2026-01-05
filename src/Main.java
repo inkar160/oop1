@@ -1,36 +1,77 @@
+import java.util.ArrayList;
+import java.util.Scanner;
+
 public class Main {
+
+    private static ArrayList<Product> products = new ArrayList<>();
+    private static Scanner scanner = new Scanner(System.in);
+
     public static void main(String[] args) {
-        System.out.println("=== Grocery Store Management System ===\n");
 
-        Product p1 = new Product("Milk", 500.0, 10, "Dairy");
-        Product p2 = new Product("Bread", 150.0, 5, "Bakery");
-        Customer c1 = new Customer(1, "Alisher", "Regular", 10000.0);
-        Customer c2 = new Customer(2, "Elena", "Gold", 60000.0);
-        Sale s1 = new Sale(101, "Milk", 500.0, 2);
+        // test data
+        products.add(new Product(1, "Sugar", 400, 10));
+        products.add(new FreshProduct(2, "Milk", 500, 5, 2));
+        products.add(new PackagedProduct(3, "Rice", 800, 7, "Makfa"));
 
-        System.out.println("--- Initial State ---");
-        System.out.println(p1);
-        System.out.println(c2);
-        System.out.println();
+        boolean run = true;
 
-        System.out.println("--- Testing Setters/Getters ---");
-        p1.setPrice(550.0);
-        System.out.println("New price for " + p1.getName() + ": " + p1.getPrice());
-        System.out.println();
+        while (run) {
+            System.out.println("\n=== GROCERY STORE ===");
+            System.out.println("1. Add product");
+            System.out.println("2. View products");
+            System.out.println("3. Polymorphism demo");
+            System.out.println("0. Exit");
+            System.out.print("Choice: ");
 
-        System.out.println("--- Testing Logic Methods ---");
+            int choice = scanner.nextInt();
+            scanner.nextLine();
 
-        System.out.println("Before restock: " + p2.getStockQuantity());
-        p2.restock(20);
-        System.out.println("After restock: " + p2.getStockQuantity());
+            switch (choice) {
+                case 1:
+                    addProduct();
+                    break;
+                case 2:
+                    viewProducts();
+                    break;
+                case 3:
+                    polymorphismDemo();
+                    break;
+                case 0:
+                    run = false;
+                    break;
+            }
+        }
+    }
 
-        System.out.println(c1.getName() + " is VIP: " + c1.isVIP());
-        System.out.println(c2.getName() + " is VIP: " + c2.isVIP());
+    private static void addProduct() {
+        System.out.print("Name: ");
+        String name = scanner.nextLine();
 
-        System.out.println("Sale total: " + s1.calculateTotal());
-        s1.applyDiscount(10);
-        System.out.println("After 10% discount: " + s1.calculateTotal());
+        System.out.print("Price: ");
+        double price = scanner.nextDouble();
 
-        System.out.println("\n=== Program Complete ===");
+        System.out.print("Quantity: ");
+        int qty = scanner.nextInt();
+        scanner.nextLine();
+
+        products.add(new Product(0, name, price, qty));
+        System.out.println("Added!");
+    }
+
+    private static void viewProducts() {
+        for (Product p : products) {
+            System.out.println(p);
+
+            if (p instanceof FreshProduct) {
+                System.out.println("  (this is fresh product)");
+            }
+        }
+    }
+
+    private static void polymorphismDemo() {
+        System.out.println("\n--- SAME METHOD, DIFFERENT RESULT ---");
+        for (Product p : products) {
+            p.showInfo(); // POLYMORPHISM
+        }
     }
 }
