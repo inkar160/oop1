@@ -12,11 +12,19 @@ public abstract class Product {
         setPrice(price);
     }
 
+    public int getId() {
+        return id;
+    }
+
     public void setId(int id) {
         if (id <= 0) {
-            throw new IllegalArgumentException("ID must be positive");
+            throw new IllegalArgumentException("Id cannot be less than or equal to zero");
         }
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
     }
 
     public void setName(String name) {
@@ -24,6 +32,10 @@ public abstract class Product {
             throw new IllegalArgumentException("Name cannot be empty");
         }
         this.name = name;
+    }
+
+    public double getPrice() {
+        return price;
     }
 
     public void setPrice(double price) {
@@ -34,7 +46,9 @@ public abstract class Product {
     }
 
     public void displayInfo() {
-        System.out.println(id + " | " + name + " | " + price);
+        System.out.println("Product ID: " + id);
+        System.out.println("Product name: " + name);
+        System.out.println("Product price: " + price);
     }
 
     // abstract method
