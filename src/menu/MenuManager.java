@@ -1,101 +1,56 @@
-package menu;
+package model;
 
-import model.*;
-import java.util.ArrayList;
-import java.util.Scanner;
+public abstract class Product {
 
-public class MenuManager implements Menu {
+    protected int id;
+    protected String name;
+    protected double price;
 
-    private ArrayList<Product> products;
-    private Scanner scanner;
-
-    public MenuManager() {
-        products = new ArrayList<>();
-        scanner = new Scanner(System.in);
+    public Product(int id, String name, double price) {
+        setId(id);
+        setName(name);
+        setPrice(price);
     }
 
-    @Override
-    public void displayMenu() {
-        System.out.println("===== GROCERY STORE MENU =====");
-        System.out.println("1. Add food product");
-        System.out.println("2. Add household product");
-        System.out.println("3. Show all products");
-        System.out.println("0. Exit");
+    public int getId() {
+        return id;
     }
 
-    @Override
-    public void run() {
-        boolean running = true;
-
-        while (running) {
-            displayMenu();
-            System.out.print("Choose option: ");
-
-            try {
-                int choice = Integer.parseInt(scanner.nextLine());
-
-                if (choice == 1) {
-                    addFoodProduct();
-                } else if (choice == 2) {
-                    addHouseholdProduct();
-                } else if (choice == 3) {
-                    showProducts();
-                } else if (choice == 0) {
-                    running = false;
-                    System.out.println("Program finished");
-                } else {
-                    System.out.println("Wrong menu option");
-                }
-
-            } catch (NumberFormatException e) {
-                System.out.println("Please enter a number");
-            } catch (IllegalArgumentException e) {
-                System.out.println("Error: " + e.getMessage());
-            }
+    public void setId(int id) {
+        if (id <= 0) {
+            throw new IllegalArgumentException("Id cannot be less than or equal to zero");
         }
+        this.id = id;
     }
 
-    private void addFoodProduct() {
-        System.out.print("Enter id: ");
-        int id = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Enter price: ");
-        double price = Double.parseDouble(scanner.nextLine());
-
-        FoodProduct food = new FoodProduct(id, name, price);
-        products.add(food);
-
-        System.out.println("Food product added");
+    public String getName() {
+        return name;
     }
 
-    private void addHouseholdProduct() {
-        System.out.print("Enter id: ");
-        int id = Integer.parseInt(scanner.nextLine());
-
-        System.out.print("Enter name: ");
-        String name = scanner.nextLine();
-
-        System.out.print("Enter price: ");
-        double price = Double.parseDouble(scanner.nextLine());
-
-        HouseholdProduct household = new HouseholdProduct(id, name, price);
-        products.add(household);
-
-        System.out.println("Household product added");
-    }
-
-    private void showProducts() {
-        if (products.isEmpty()) {
-            System.out.println("No products in store");
+    public void setName(String name) {
+        if (name == null || name.trim().isEmpty()) {
+            throw new IllegalArgumentException("Name cannot be empty");
         }
-
-        for (Product product : products) {
-            product.displayInfo();
-            System.out.println("Category: " + product.getCategory());
-            System.out.println("----------------------");
-        }
+        this.name = name;
     }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        if (price < 0) {
+            throw new IllegalArgumentException("Price cannot be negative");
+        }
+        this.price = price;
+    }
+
+    public void displayInfo() {
+        System.out.println("Product ID: " + id);
+        System.out.println("Product name: " + name);
+        System.out.println("Product price: " + price);
+    }
+
+    // abstract method
+    public abstract String getCategory();
 }
