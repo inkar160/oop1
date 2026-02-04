@@ -120,7 +120,7 @@ public class MenuManager implements Menu {
         List<Product> products = productDAO.getAllProducts();
 
         if (products.isEmpty()) {
-            System.out.println("📭 No products in the store");
+            System.out.println(" No products in the store");
             return;
         }
 
