@@ -1,5 +1,3 @@
-
-
 package database;
 
 import model.Product;

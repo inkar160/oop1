@@ -1,4 +1,3 @@
-// src/menu/MenuManager.java
 package menu;
 
 import model.*;
@@ -324,7 +323,6 @@ public class MenuManager implements Menu {
         }
     }
 
-    // Для обратной совместимости (старый код)
     private void showProducts() {
         showAllProducts();
     }
