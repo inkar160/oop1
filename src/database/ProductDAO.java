@@ -33,11 +33,11 @@ public class ProductDAO {
             statement.close();
 
             if (rowsInserted > 0) {
-                System.out.println("✅ Product inserted successfully!");
+                System.out.println("Product inserted successfully!");
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("❌ Insert failed!");
+            System.out.println("Insert failed!");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
@@ -64,7 +64,7 @@ public class ProductDAO {
             resultSet.close();
             statement.close();
         } catch (SQLException e) {
-            System.out.println("❌ Select failed!");
+            System.out.println("Select failed!");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
@@ -89,7 +89,7 @@ public class ProductDAO {
                 return product;
             }
         } catch (SQLException e) {
-            System.out.println("❌ Get product failed!");
+            System.out.println("Get product failed!");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
@@ -120,11 +120,11 @@ public class ProductDAO {
             statement.close();
 
             if (rowsUpdated > 0) {
-                System.out.println("✅ Product updated successfully!");
+                System.out.println("Product updated successfully!");
                 return true;
             }
         } catch (SQLException e) {
-            System.out.println("❌ Update failed!");
+            System.out.println("Update failed!");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
@@ -145,13 +145,13 @@ public class ProductDAO {
             statement.close();
 
             if (rowsDeleted > 0) {
-                System.out.println("✅ Product deleted successfully!");
+                System.out.println("Product deleted successfully!");
                 return true;
             } else {
-                System.out.println("⚠️ No product found with ID: " + productId);
+                System.out.println("No product found with ID: " + productId);
             }
         } catch (SQLException e) {
-            System.out.println("❌ Delete failed!");
+            System.out.println("Delete failed!");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
@@ -179,9 +179,9 @@ public class ProductDAO {
 
             resultSet.close();
             statement.close();
-            System.out.println("🔍 Found " + products.size() + " products");
+            System.out.println("Found " + products.size() + " products");
         } catch (SQLException e) {
-            System.out.println("❌ Search failed!");
+            System.out.println("Search failed!");
             e.printStackTrace();
         } finally {
             DatabaseConnection.closeConnection(connection);
@@ -272,7 +272,7 @@ public class ProductDAO {
         List<Product> products = getAllProducts();
 
         if (products.isEmpty()) {
-            System.out.println("📭 No products in the store");
+            System.out.println("No products in the store");
             return;
         }
 

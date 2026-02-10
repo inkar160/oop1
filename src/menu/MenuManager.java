@@ -52,17 +52,17 @@ public class MenuManager implements Menu {
                     case 9 -> checkFoodExpiration();
                     case 0 -> {
                         running = false;
-                        System.out.println("👋 Program finished. Goodbye!");
+                        System.out.println("Program finished. Goodbye!");
                     }
-                    default -> System.out.println("❌ Wrong menu option");
+                    default -> System.out.println("Wrong menu option");
                 }
 
             } catch (NumberFormatException e) {
-                System.out.println("❌ Please enter a number");
+                System.out.println("Please enter a number");
             } catch (IllegalArgumentException e) {
-                System.out.println("❌ Error: " + e.getMessage());
+                System.out.println("Error: " + e.getMessage());
             } catch (Exception e) {
-                System.out.println("❌ Unexpected error: " + e.getMessage());
+                System.out.println("Unexpected error: " + e.getMessage());
             }
         }
     }
@@ -83,11 +83,11 @@ public class MenuManager implements Menu {
 
             boolean success = productDAO.insertProduct(food);
             if (success) {
-                System.out.println("✅ Food product added to database!");
+                System.out.println("Food product added to database!");
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("❌ Invalid number format");
+            System.out.println("Invalid number format");
         }
     }
 
@@ -107,11 +107,11 @@ public class MenuManager implements Menu {
 
             boolean success = productDAO.insertProduct(household);
             if (success) {
-                System.out.println("✅ Household product added to database!");
+                System.out.println("Household product added to database!");
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("❌ Invalid number format");
+            System.out.println("Invalid number format");
         }
     }
 
@@ -146,7 +146,7 @@ public class MenuManager implements Menu {
 
             Product existingProduct = productDAO.getProductById(productId);
             if (existingProduct == null) {
-                System.out.println("❌ No product found with ID: " + productId);
+                System.out.println("No product found with ID: " + productId);
                 return;
             }
 
@@ -191,16 +191,16 @@ public class MenuManager implements Menu {
                 success = productDAO.updateProduct(updatedProduct);
 
             } else {
-                System.out.println("❌ Unknown product type");
+                System.out.println("Unknown product type");
                 return;
             }
 
             if (success) {
-                System.out.println("✅ Product updated successfully!");
+                System.out.println("Product updated successfully!");
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("❌ Invalid number format");
+            System.out.println("Invalid number format");
         }
     }
 
@@ -211,27 +211,27 @@ public class MenuManager implements Menu {
 
             Product product = productDAO.getProductById(productId);
             if (product == null) {
-                System.out.println("❌ No product found with ID: " + productId);
+                System.out.println("No product found with ID: " + productId);
                 return;
             }
 
             System.out.println("\nProduct to delete:");
             product.displayInfo();
 
-            System.out.print("\n⚠️ Are you sure you want to delete? (yes/no): ");
+            System.out.print("\nAre you sure you want to delete? (yes/no): ");
             String confirmation = scanner.nextLine();
 
             if (confirmation.equalsIgnoreCase("yes")) {
                 boolean success = productDAO.deleteProduct(productId);
                 if (success) {
-                    System.out.println("✅ Product deleted successfully!");
+                    System.out.println("Product deleted successfully!");
                 }
             } else {
-                System.out.println("❌ Deletion cancelled.");
+                System.out.println("Deletion cancelled.");
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("❌ Invalid number format");
+            System.out.println("Invalid number format");
         }
     }
 
@@ -265,7 +265,7 @@ public class MenuManager implements Menu {
             List<Product> results = productDAO.searchByPriceRange(minPrice, maxPrice);
 
             if (results.isEmpty()) {
-                System.out.println("💰 No products found in price range: " + minPrice + " - " + maxPrice);
+                System.out.println("No products found in price range: " + minPrice + " - " + maxPrice);
             } else {
                 System.out.println("\n===== PRODUCTS IN PRICE RANGE =====");
                 for (Product product : results) {
@@ -275,7 +275,7 @@ public class MenuManager implements Menu {
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("❌ Invalid number format");
+            System.out.println("Invalid number format");
         }
     }
 
@@ -287,7 +287,7 @@ public class MenuManager implements Menu {
             List<Product> results = productDAO.searchByMinPrice(minPrice);
 
             if (results.isEmpty()) {
-                System.out.println("💎 No products found with price >= " + minPrice);
+                System.out.println("No products found with price >= " + minPrice);
             } else {
                 System.out.println("\n===== EXPENSIVE PRODUCTS (>= " + minPrice + ") =====");
                 for (Product product : results) {
@@ -297,7 +297,7 @@ public class MenuManager implements Menu {
             }
 
         } catch (NumberFormatException e) {
-            System.out.println("❌ Invalid number format");
+            System.out.println("Invalid number format");
         }
     }
 
@@ -317,9 +317,9 @@ public class MenuManager implements Menu {
         }
 
         if (expiredCount == 0) {
-            System.out.println("✅ All food products are fresh!");
+            System.out.println("All food products are fresh!");
         } else {
-            System.out.println("⚠️ Found " + expiredCount + " expired food products");
+            System.out.println("Found " + expiredCount + " expired food products");
         }
     }
 
