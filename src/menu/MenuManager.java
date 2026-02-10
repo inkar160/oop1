@@ -242,7 +242,7 @@ public class MenuManager implements Menu {
         List<Product> results = productDAO.searchByName(name);
 
         if (results.isEmpty()) {
-            System.out.println("🔍 No products found with name containing: " + name);
+            System.out.println(" No products found with name containing: " + name);
         } else {
             System.out.println("\n===== SEARCH RESULTS =====");
             for (Product product : results) {
